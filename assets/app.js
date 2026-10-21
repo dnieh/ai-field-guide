@@ -8,7 +8,7 @@
   let G = null, byLayer = {}, catOf = {}, layerOf = {};
   const filt = { q: "", layer: "all", cat: "all", kind: "all" };
 
-  fetch("data/guide.json").then(r => r.json()).then(d => {
+  fetch("data/guide.json?v=" + (window.GUIDE_VERSION || "")).then(r => r.json()).then(d => {
     G = d;
     G.layers.forEach(L => {
       byLayer[L.id] = L;
@@ -61,9 +61,11 @@
       const L = byLayer[id];
       const n = L.cats.reduce((s, C) => s + C.deep.length + C.maps.length, 0);
       return `<a class="stratum" href="#${id}" style="--c:var(${L.color})">
-        <span class="lvl">Layer ${i + 1}</span>
-        <span><h3>${esc(L.name)}</h3><p>${esc(L.what)}</p><div class="ex">${L.cats.map(C => esc(C.title)).join(" · ")}</div></span>
-        <span class="st">${n} companies</span></a>`;
+        <span class="lvl">Layer ${i + 1} · ${n} companies</span>
+        <h3>${esc(L.name)}</h3>
+        <p>${esc(L.what)}</p>
+        <div class="ex">${L.cats.map(C => esc(C.title)).join(" · ")}</div>
+      </a>`;
     }).join("");
     const facts = G.facts.map(f => `<li><span>${esc(f.note)}</span><span class="src"><span>${esc(f.date)}</span><a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.pub)}</a></span></li>`).join("");
     return `
