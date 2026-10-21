@@ -2,8 +2,7 @@
 (function () {
   "use strict";
   const ISSUES = "https://github.com/dnieh/ai-field-guide/issues";
-  const ORDER = ["m1", "m2", "m3", "m4", "m5"];
-  const STACK = ["m4", "m5", "m3", "m1", "m2"]; // top of the stack to the bottom
+  const ORDER = ["m2", "m1", "m3", "m4", "m5"]; // bottom of the stack to the top
   const $ = (s, el = document) => el.querySelector(s);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
   let G = null, byLayer = {}, catOf = {}, layerOf = {};
@@ -58,11 +57,11 @@
 
   /* ---------- overview ---------- */
   function renderHome() {
-    const strata = STACK.map(id => {
+    const strata = ORDER.map((id, i) => {
       const L = byLayer[id];
       const n = L.cats.reduce((s, C) => s + C.deep.length + C.maps.length, 0);
       return `<a class="stratum" href="#${id}" style="--c:var(${L.color})">
-        <span class="lvl">Layer</span>
+        <span class="lvl">Layer ${i + 1}</span>
         <span><h3>${esc(L.name)}</h3><p>${esc(L.what)}</p><div class="ex">${L.cats.map(C => esc(C.title)).join(" · ")}</div></span>
         <span class="st">${n} companies</span></a>`;
     }).join("");
@@ -71,10 +70,10 @@
     <section class="hero">
       <span class="eyebrow">Overview</span>
       <h2>The AI industry, mapped layer by layer</h2>
-      <p>A reference guide to ${G.stats.companies} AI companies, from the labs that train models to the chips they run on, the tools developers use and the products people buy. Every figure links to its source, and a separate pass re-checked the claims.</p>
-      <div class="meta-row"><span><b>${G.stats.deep}</b> detailed profiles</span><span><b>${G.stats.maps}</b> long-tail entries</span><span><b>${G.stats.checks.toLocaleString()}</b> facts re-checked</span><span>Snapshot as of <b>${fmtDate(G.updated)}</b></span></div>
+      <p>A reference guide to ${G.stats.companies} AI companies, from the chips and data centers at the bottom of the stack to the labs that train models, the tools developers use, the products people buy and the robots that act in the physical world. Every figure links to its source, and a separate pass re-checked the claims.</p>
+      <div class="meta-row"><span><b>${G.stats.deep}</b> detailed profiles</span><span><b>${G.stats.maps}</b> shorter entries</span><span><b>${G.stats.checks.toLocaleString()}</b> facts re-checked</span><span>Snapshot as of <b>${fmtDate(G.updated)}</b></span></div>
     </section>
-    <div class="section-h"><h3>The stack, top to bottom</h3><span class="eyebrow">Open a layer to browse it</span></div>
+    <div class="section-h"><h3>The stack, bottom to top</h3><span class="eyebrow">Open a layer to browse it</span></div>
     <div class="strata">${strata}</div>
     <div class="flow">
       <div><b>Money flowing down</b>Hyperscalers keep raising their AI data-center spending: Amazon guides about $220B for 2026 and Alphabet $195–205B. Most of it ends up with chip, memory and power suppliers.</div>

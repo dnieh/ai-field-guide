@@ -6,12 +6,12 @@ A sourced, fact-checked map of **854 AI companies** across the stack, as of Octo
 
 ## What's inside
 
-The guide is organized by layer of the AI stack, each split into categories:
+The guide is organized by layer of the AI stack, from the bottom up, each split into categories:
 
 | Layer | What it covers |
 |---|---|
-| Model labs | Frontier labs, new research labs, open-weight and enterprise model makers, China, sovereign labs, generative media, world models, science and bio |
 | Chips, compute & clouds | GPUs and custom silicon, chip startups, clouds and neoclouds, data centers, power and networking |
+| Model labs | Frontier labs, new research labs, open-weight and enterprise model makers, China, sovereign labs, generative media, world models, science and bio |
 | Dev tools & infra | Coding agents, app builders, review and testing, agent infrastructure, inference, training platforms, training data, evals and security, databases |
 | Applications | Business functions (support, sales, finance, HR, security…) and industries (legal, healthcare, financial services, real estate, government, education, industrial, consumer) |
 | Physical AI & robotics | Robot foundation models, humanoids, industrial robots, autonomous vehicles, defense tech |
