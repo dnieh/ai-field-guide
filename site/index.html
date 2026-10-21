@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Industry Field Guide</title>
+<meta name="description" content="A sourced, fact-checked map of 854 AI companies across the stack (chips and compute, model labs, dev tools, applications, physical AI) as of October 2026.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Industry Field Guide">
+<meta property="og:description" content="854 AI companies across the stack, sourced and fact-checked. Snapshot as of October 2026.">
+<meta property="og:url" content="https://dnieh.github.io/ai-field-guide/">
+<meta property="og:image" content="https://dnieh.github.io/ai-field-guide/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Industry Field Guide">
+<meta name="twitter:description" content="854 AI companies across the stack, sourced and fact-checked. Snapshot as of October 2026.">
+<meta name="twitter:image" content="https://dnieh.github.io/ai-field-guide/og.png">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<script>
+  // Apply the saved or system theme before first paint to avoid a flash.
+  (function () {
+    try {
+      var t = localStorage.getItem("aifg-theme") || "system";
+      var dark = t === "dark" || (t === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      if (dark) document.documentElement.classList.add("dark");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<div id="root"></div>
+<noscript><p style="padding:16px">This guide needs JavaScript to load its data.</p></noscript>
+<script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
